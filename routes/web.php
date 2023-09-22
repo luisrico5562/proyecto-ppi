@@ -1,6 +1,11 @@
 <?php
 
+use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\FacturaController;
+use App\Http\Controllers\ArtistaController;
 use Illuminate\Support\Facades\Route;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +21,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+
+
+
+
+
+
+Route::resource('Cliente', ClienteController::class);
+
+Route::resource('Artista', ArtistaController::class);

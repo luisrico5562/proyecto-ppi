@@ -12,7 +12,7 @@ class ClienteController extends Controller
      */
     public function index()
     {
-        //
+        return view('vista_cliente_index');
     }
 
     /**
@@ -20,7 +20,7 @@ class ClienteController extends Controller
      */
     public function create()
     {
-        //
+        return view('vista_cliente_index');
     }
 
     /**
@@ -28,7 +28,35 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        /*
+        $request->validate([
+            'nombre' => 'required:clientes,nombre|max:255',
+            'usuario' => ['unique', 'required', 'min:1', 'max:30'],
+            'correo' => 'required|email',
+            'password' => ['required', 'min:5'],
+            'direccion' => ['required', 'min:5', 'max:50'],
+            // LLENARLLENARLLENARLLENARLLENARLLENARLLENAR 
+            // FOTO EN EL TELÉFONO DE SAMU
+        ]);
+        
+        
+        $cliente = new Cliente();
+        //aceder a atributos:
+        
+        //$cliente->id = $request->id;
+        $cliente->nombre = $request->nombre;
+        $cliente->usuario = $request->usuario;
+        $cliente->correo = $request->correo;
+        $cliente->password = $request->password;
+        $cliente->direccion = $request->direccion;
+        
+    
+        //hacer la insersion a la base de datos
+        $cliente->save();
+        //return redirect()->back();
+        return redirect('/Cliente');
+        */
+        
     }
 
     /**

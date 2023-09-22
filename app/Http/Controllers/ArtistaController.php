@@ -12,7 +12,13 @@ class ArtistaController extends Controller
      */
     public function index()
     {
-        //
+        //Artista::all();
+        $artistas = Artista::all();
+
+        //return view('vista_artista_index');
+        //return view('artistas/artista-index', ['artistas' => $artistas]);
+        return view('vista_artista_index', compact('artistas'));
+        //['normas' => $normas]
     }
 
     /**
@@ -20,7 +26,7 @@ class ArtistaController extends Controller
      */
     public function create()
     {
-        //
+        return view('vista_artista_index');
     }
 
     /**
@@ -28,15 +34,36 @@ class ArtistaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nombre' => ['required:artistas,nombre', 'max:50'],
+            'pais' => ['min:1', 'max:30']
+            // LLENARLLENARLLENARLLENARLLENARLLENARLLENAR 
+            // FOTO EN EL TELÉFONO DE SAMU
+        ]);
+        
+        
+        $artista = new Artista();
+        //aceder a atributos:
+        
+        //$cliente->id = $request->id;
+        $artista->nombre = $request->nombre;
+        $artista->pais = $request->pais;
+        
+    
+        //hacer la insersion a la base de datos
+        $artista->save();
+        //return redirect()->back();
+        //return redirect('/Arista');
+        return redirect()->route('Artista.index');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Artista $artista)
+    public function show(Artista $Artistum)
     {
-        //
+        $artista = $Artistum;
+        return view('vista_artista_show', compact('artista'));
     }
 
     /**
