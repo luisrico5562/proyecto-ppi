@@ -17,8 +17,10 @@ class ArtistaController extends Controller
 
         //return view('vista_artista_index');
         //return view('artistas/artista-index', ['artistas' => $artistas]);
-        return view('vista_artista_index', compact('artistas'));
         //['normas' => $normas]
+
+        return view('vista_artista_index', compact('artistas'));
+        //return view('vista_artista_create', compact('artistas'));
     }
 
     /**
@@ -26,7 +28,8 @@ class ArtistaController extends Controller
      */
     public function create()
     {
-        return view('vista_artista_index');
+        //return view('vista_artista_index');
+        return view('vista_artista_create');
     }
 
     /**
@@ -36,7 +39,8 @@ class ArtistaController extends Controller
     {
         $request->validate([
             'nombre' => ['required:artistas,nombre', 'max:50'],
-            'pais' => ['min:1', 'max:30']
+            'pais' => ['min:1', 'max:30'],
+            'descripcion' => ['min:0', 'max:300']
             // LLENARLLENARLLENARLLENARLLENARLLENARLLENAR 
             // FOTO EN EL TELÉFONO DE SAMU
         ]);
@@ -48,6 +52,7 @@ class ArtistaController extends Controller
         //$cliente->id = $request->id;
         $artista->nombre = $request->nombre;
         $artista->pais = $request->pais;
+        $artista->descripcion = $request->descripcion;
         
     
         //hacer la insersion a la base de datos
@@ -69,24 +74,40 @@ class ArtistaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Artista $artista)
+    public function edit(Artista $Artistum)
     {
-        //
+        $artista = $Artistum;
+        return view('vista_artista_edit', compact('artista'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Artista $artista)
+    public function update(Request $request, Artista $Artistum)
     {
-        //
+        $request->validate([
+            'nombre' => ['required:artistas,nombre', 'max:50'],
+            'pais' => ['min:1', 'max:30'],
+            'descripcion' => ['min:0', 'max:300']
+            // LLENARLLENARLLENARLLENARLLENARLLENARLLENAR 
+            // FOTO EN EL TELÉFONO DE SAMU
+        ]);
+
+        $artista = $Artistum;
+        $artista->nombre = $request->nombre;
+        $artista->pais = $request->pais;
+        $artista->descripcion = $request->descripcion;
+        $artista->save();
+        return redirect()->route('Artista.show', $artista);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Artista $artista)
+    public function destroy(Artista $Artistum)
     {
-        //
+        $artista = $Artistum;
+        $artista->delete();
+        return redirect()->route('Artista.index');
     }
 }

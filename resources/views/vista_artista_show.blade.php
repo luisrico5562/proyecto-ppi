@@ -6,6 +6,19 @@
     <title>Ver artista</title>
 </head>
 <body>
-    <h1>dfsdf {{$artista->id}}</h1>
+    <h1>{{$artista->nombre}}</h1>
+    <h2>{{$artista->pais}}</h2>
+    <p>{{$artista->descripcion}}</p>
+
+    <br>
+    <form action="{{route('Artista.edit', $artista)}}">
+        <input type="submit" value="Editar" />
+    </form>
+
+    <br>
+    <form action="{{route('Artista.index')}}">
+        <input type="submit" value="Regresar" />
+    </form>
+
 </body>
 </html>

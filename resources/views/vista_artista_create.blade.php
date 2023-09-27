@@ -15,8 +15,17 @@
         <input type="text" name="nombre"><br>
         <label for="pais">País</label><br>
         <input type="text" name="pais"><br>
+        <label for="descripcion">Descripción</label><br>
+        <input type="text" name="descripcion"><br>
 
+        <br>
         <input type="submit" value="Guardar">
     </form>
+
+    <br>
+    <form action="{{route('Artista.index')}}">
+        <input type="submit" value="Regresar" />
+    </form>
+
 </body>
 </html>

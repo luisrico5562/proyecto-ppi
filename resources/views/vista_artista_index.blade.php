@@ -7,15 +7,6 @@
 </head>
 <body>
     <h1>VER ARTISTAS</h1>
-    <!--
-    <ul>
-        @foreach ($artistas as $artista)
-        <li>{{$artista->id}}</li>
-        <li>{{$artista->nombre}}</li>
-        <li>{{$artista->pais}}</li>
-        @endforeach
-    </ul>
-    -->
     <table>
         <tr>
             <th>ID</th>
@@ -35,7 +26,9 @@
         @endforeach
     </table>
     
-
-
+    <br>
+    <form action="{{route('Artista.create')}}">
+        <input type="submit" value="Agregar artista" />
+    </form>
 </body>
 </html>
