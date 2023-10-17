@@ -29,6 +29,13 @@ Route::resource('Disco', DiscoController::class);
 Route::resource('Factura', FacturaController::class);
 Route::resource('Cliente', ClienteController::class);
 
+Route::get('/logout', function ()
+{
+    auth()->logout();
+    Session()->flush();
+
+    return view('inicio');
+})->name('logout');
 
 Route::middleware([
     'auth:sanctum',

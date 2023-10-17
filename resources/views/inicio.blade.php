@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Echoes of Vinyl - inicio</title>
+  <title>Echoes of Vinyl - Inicio</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -44,7 +44,7 @@
   <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-      <a href="index.html" class="logo d-flex align-items-center">
+      <a href="/" class="logo d-flex align-items-center">
         <img src="img/logo.png" alt="">
         <span class="d-none d-lg-block">Echoes of Vinyl</span>
       </a>
@@ -98,10 +98,13 @@
 
             <li>
                 @auth
-                <a class="dropdown-item d-flex align-items-center" href="{{route('logout')}}">
-                    <i class="bi bi-box-arrow-right"></i>
-                    <span>Salir</span>
-                </a>
+                <form method="POST" action="{{ route('logout') }}">
+                  @csrf
+                  <a class="dropdown-item d-flex align-items-center" href="{{route('logout')}}">
+                      <i class="bi bi-box-arrow-right"></i>
+                      <span>Salir</span>
+                  </a>
+                </form>
                 @else
                 <a class="dropdown-item d-flex align-items-center" href="#">
                     <i class="bi bi-box-arrow-right"></i>
