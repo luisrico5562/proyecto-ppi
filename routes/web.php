@@ -17,19 +17,25 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('inicio');
+});
+
+Route::get('/users-profile', function ()
+{
+    return view('users-profile');
 });
 
 Route::resource('Disco', DiscoController::class);
 Route::resource('Factura', FacturaController::class);
 Route::resource('Cliente', ClienteController::class);
 
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('/users-profile', function () {
+        return view('users-profile');
+    })->name('users-profile');
 });
