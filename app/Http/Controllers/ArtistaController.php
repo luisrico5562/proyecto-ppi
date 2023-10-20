@@ -41,8 +41,6 @@ class ArtistaController extends Controller
             'nombre' => ['required:artistas,nombre', 'max:50'],
             'pais' => ['min:1', 'max:30'],
             'descripcion' => ['min:0', 'max:300']
-            // LLENARLLENARLLENARLLENARLLENARLLENARLLENAR 
-            // FOTO EN EL TELÉFONO DE SAMU
         ]);
         
         
@@ -89,8 +87,6 @@ class ArtistaController extends Controller
             'nombre' => ['required:artistas,nombre', 'max:50'],
             'pais' => ['min:1', 'max:30'],
             'descripcion' => ['min:0', 'max:300']
-            // LLENARLLENARLLENARLLENARLLENARLLENARLLENAR 
-            // FOTO EN EL TELÉFONO DE SAMU
         ]);
 
         $artista = $Artistum;

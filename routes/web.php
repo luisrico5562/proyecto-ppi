@@ -32,6 +32,9 @@ Route::get('/', function () {
 Route::resource('Cliente', ClienteController::class);
 
 Route::resource('Artista', ArtistaController::class);
+
+Route::resource('Factura', FacturaController::class);
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),

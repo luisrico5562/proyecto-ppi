@@ -2,9 +2,9 @@
 <html lang="es">
 
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>Artistas</title>
+    <title>Ver factura</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -13,7 +13,8 @@
     <link href="{{asset('assets/img/apple-touch-icon.png')}}" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=https://fonts.googleapis.com/css?family=Inconsolata:400,500,600,700|Raleway:400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
     <!-- Vendor CSS Files -->
     <link href="{{asset('assets/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
@@ -26,7 +27,6 @@
 
     <!-- Template Main CSS File -->
     <link type="text/css" href="{{asset('assets/css/style.css')}}" rel="stylesheet">
-
 
     <!-- =======================================================
     * Template Name: MyPortfolio
@@ -130,7 +130,7 @@
             </li><!-- End Discos Page Nav -->
 
             <li class="nav-item">
-                <a class="nav-link" href="{{route('Artista.index')}}">
+                <a class="nav-link collapsed" href="{{route('Artista.index')}}">
                     <i class="bi bi-card-list"></i>
                     <span>Artistas</span>
                 </a>
@@ -144,7 +144,7 @@
             </li><!-- End Clientes Page Nav -->
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="{{route('Factura.index')}}">
+                <a class="nav-link collapsed" href="tables-data-facturas.html">
                     <i class="bi bi-card-list"></i>
                     <span>Facturas</span>
                 </a>
@@ -164,7 +164,7 @@
     <main id="main" class="main">
 
         <div class="pagetitle">
-            <h1>Tabla artistas</h1>
+            <h1>Factura</h1>
         </div><!-- End Page Title -->
 
         <section class="section">
@@ -173,40 +173,44 @@
 
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Lista de todos los artistas en la base de datos.</h5>
+                            <h5 class="card-title">{{$factura->id}}</h5>
 
-                            <a href="{{route('Artista.create')}}">Agregar artista</a>
+                            <div class="tab-pane fade show active profile-overview" id="profile-overview">
+
+                                <div class="row">
+                                    <div class="col-lg-2 col-md-4 label ">ID factura</div>
+                                    <div class="col-lg-10 col-md-8">{{$factura->id}}</div>
+                                </div>
+
+                                <br>
+
+                                <div class="row">
+                                    <div class="col-lg-2 col-md-4 label">ID usuario</div>
+                                    <div class="col-lg-10 col-md-8">{{$factura->user_id}}</div>
+                                </div>
+
+                                <br>
+
+                                <div class="row">
+                                    <div class="col-lg-2 col-md-4 label">ID disco</div>
+                                    <div class="col-lg-10 col-md-8">{{$factura->disco_id}}</div>
+                                </div>
+                                
+                                <br>
+
+                            </div>
+
+                            <form action="{{route('Factura.edit', $factura)}}">
+                                <input type="submit" class="btn btn-primary" value="Editar" />
+                            </form>
                             <p></p>
-
-                            <!-- Table with stripped rows -->
-                            <table class="table datatable">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">ID</th>
-                                        <th scope="col">Nombre</th>
-                                        <th scope="col">País</th>
-
-                                    </tr>
-                                </thead>
-                                <tbody>
-
-                                    @foreach ($artistas as $artista)
-                                    <tr>
-                                        <th scope="row">{{$artista->id}}</th>
-                                        <td><a href="{{route('Artista.show', $artista)}}">{{$artista->nombre}}</a></td>
-                                        <td>{{$artista->pais}}</td>
-
-                                    </tr>
-                                    @endforeach
-
-                                </tbody>
-                            </table>
-                            <!-- End Table with stripped rows -->
+                            <a href="{{route('Factura.index')}}">Regresar</a>
 
                         </div>
                     </div>
 
                 </div>
+
             </div>
         </section>
 

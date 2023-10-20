@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>Artistas</title>
+    <title>Facturas</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -130,7 +130,7 @@
             </li><!-- End Discos Page Nav -->
 
             <li class="nav-item">
-                <a class="nav-link" href="{{route('Artista.index')}}">
+                <a class="nav-link collapsed" href="{{route('Artista.index')}}">
                     <i class="bi bi-card-list"></i>
                     <span>Artistas</span>
                 </a>
@@ -144,7 +144,7 @@
             </li><!-- End Clientes Page Nav -->
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="{{route('Factura.index')}}">
+                <a class="nav-link" href="{{route('Factura.index')}}">
                     <i class="bi bi-card-list"></i>
                     <span>Facturas</span>
                 </a>
@@ -164,7 +164,7 @@
     <main id="main" class="main">
 
         <div class="pagetitle">
-            <h1>Tabla artistas</h1>
+            <h1>Tabla facturas</h1>
         </div><!-- End Page Title -->
 
         <section class="section">
@@ -173,28 +173,28 @@
 
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Lista de todos los artistas en la base de datos.</h5>
+                            <h5 class="card-title">Lista de todas las facturas en la base de datos.</h5>
 
-                            <a href="{{route('Artista.create')}}">Agregar artista</a>
+                            <a href="{{route('Factura.create')}}">Agregar factura</a>
                             <p></p>
 
                             <!-- Table with stripped rows -->
                             <table class="table datatable">
                                 <thead>
                                     <tr>
-                                        <th scope="col">ID</th>
-                                        <th scope="col">Nombre</th>
-                                        <th scope="col">País</th>
+                                        <th scope="col">ID factura</th>
+                                        <th scope="col">ID usuario</th>
+                                        <th scope="col">ID disco</th>
 
                                     </tr>
                                 </thead>
                                 <tbody>
 
-                                    @foreach ($artistas as $artista)
+                                    @foreach ($facturas as $factura)
                                     <tr>
-                                        <th scope="row">{{$artista->id}}</th>
-                                        <td><a href="{{route('Artista.show', $artista)}}">{{$artista->nombre}}</a></td>
-                                        <td>{{$artista->pais}}</td>
+                                        <th scope="row"><a href="{{route('Factura.show', $factura)}}">{{$factura->id}}</a></th>
+                                        <td>{{$factura->user_id}}</td>
+                                        <td>{{$factura->disco_id}}</td>
 
                                     </tr>
                                     @endforeach

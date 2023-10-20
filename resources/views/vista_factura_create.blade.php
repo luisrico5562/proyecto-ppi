@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-    <meta charset="utf-8">
+<meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>Artistas</title>
+    <title>Crear factura</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -13,7 +12,8 @@
     <link href="{{asset('assets/img/apple-touch-icon.png')}}" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=https://fonts.googleapis.com/css?family=Inconsolata:400,500,600,700|Raleway:400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
     <!-- Vendor CSS Files -->
     <link href="{{asset('assets/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
@@ -27,7 +27,6 @@
     <!-- Template Main CSS File -->
     <link type="text/css" href="{{asset('assets/css/style.css')}}" rel="stylesheet">
 
-
     <!-- =======================================================
     * Template Name: MyPortfolio
     * Updated: Sep 18 2023 with Bootstrap v5.3.2
@@ -36,8 +35,8 @@
     * License: https://bootstrapmade.com/license/
     ======================================================== -->
 </head>
-
 <body>
+
     <!-- ======= Header ======= -->
     <header id="header" class="header fixed-top d-flex align-items-center">
 
@@ -130,7 +129,7 @@
             </li><!-- End Discos Page Nav -->
 
             <li class="nav-item">
-                <a class="nav-link" href="{{route('Artista.index')}}">
+                <a class="nav-link collapsed" href="{{route('Artista.index')}}">
                     <i class="bi bi-card-list"></i>
                     <span>Artistas</span>
                 </a>
@@ -144,7 +143,7 @@
             </li><!-- End Clientes Page Nav -->
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="{{route('Factura.index')}}">
+                <a class="nav-link collapsed" href="tables-data-facturas.html">
                     <i class="bi bi-card-list"></i>
                     <span>Facturas</span>
                 </a>
@@ -164,7 +163,7 @@
     <main id="main" class="main">
 
         <div class="pagetitle">
-            <h1>Tabla artistas</h1>
+            <h1>Crear factura</h1>
         </div><!-- End Page Title -->
 
         <section class="section">
@@ -173,44 +172,51 @@
 
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Lista de todos los artistas en la base de datos.</h5>
+                            <h5 class="card-title">Datos</h5>
 
-                            <a href="{{route('Artista.create')}}">Agregar artista</a>
+                            <!-- General Form Elements -->
+                            <form form action="{{route('Factura.store')}}" method="POST">
+                                @csrf
+                                <div class="row mb-3">
+                                    <label for="user_id" class="col-sm-2 col-form-label">ID usuario</label>
+                                    <div class="col-sm-10">
+                                        <input name="user_id" type="text" class="form-control"">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label for="disco_id" class="col-sm-2 col-form-label">ID disco</label>
+                                    <div class="col-sm-10">
+                                        <input name="disco_id" type="text" class="form-control"">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-sm-10">
+                                        <button type="submit" class="btn btn-primary">Guardar</button>
+                                    </div>
+                                </div>
+
+                            </form><!-- End General Form Elements -->
+
                             <p></p>
-
-                            <!-- Table with stripped rows -->
-                            <table class="table datatable">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">ID</th>
-                                        <th scope="col">Nombre</th>
-                                        <th scope="col">País</th>
-
-                                    </tr>
-                                </thead>
-                                <tbody>
-
-                                    @foreach ($artistas as $artista)
-                                    <tr>
-                                        <th scope="row">{{$artista->id}}</th>
-                                        <td><a href="{{route('Artista.show', $artista)}}">{{$artista->nombre}}</a></td>
-                                        <td>{{$artista->pais}}</td>
-
-                                    </tr>
-                                    @endforeach
-
-                                </tbody>
-                            </table>
-                            <!-- End Table with stripped rows -->
+                            <a href="{{route('Factura.index')}}">Cancelar</a>
 
                         </div>
                     </div>
 
                 </div>
+
+
             </div>
         </section>
 
     </main><!-- End #main -->
+
+    <br>
+    <form action="{{route('Factura.index')}}">
+        <input type="submit" value="Regresar" />
+    </form>
 
     <!-- ======= Footer ======= -->
     <footer id="footer" class="footer">
@@ -242,5 +248,4 @@
     <script src="{{asset('assets/js/main.js')}}"></script>
 
 </body>
-
 </html>
