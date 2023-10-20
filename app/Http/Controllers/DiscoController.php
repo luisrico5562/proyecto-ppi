@@ -49,31 +49,31 @@ class DiscoController extends Controller
         $disco->save();
         
         //Nos regresamos al index = Disco.index
-        return redirect()->route('Disco.index');
+        return redirect()->route('disco.index');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Disco $Disco)
+    public function show(Disco $disco)
     {
-        $disco = $Disco; 
+        $disco = $disco; 
         return view('disco_vista_show', compact('disco'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Disco $Disco)
+    public function edit(Disco $disco)
     {
-        $disco = $Disco;
+        $disco = $disco;
         return  view('disco_vista_edit', compact('disco'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Disco $Disco)
+    public function update(Request $request, Disco $disco)
     {
         $request->validate([
             'nombre' => 'required|max:50',
@@ -83,7 +83,7 @@ class DiscoController extends Controller
             'precio' => 'required'
         ]);
 
-        $disco = $Disco;
+        $disco = $disco;
 
         $disco->nombre = $request->nombre;
         $disco->genero = $request->genero;
@@ -93,16 +93,16 @@ class DiscoController extends Controller
 
         //Igual se deben validar los datos
         $disco->save();
-        return redirect()->route('Disco.show', $disco);
+        return redirect()->route('disco.show', $disco);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Disco $Disco)
+    public function destroy(Disco $disco)
     {
-        $disco = $Disco;
+        $disco = $disco;
         $disco->delete();
-        return redirect()->route('Disco.index');
+        return redirect()->route('disco.index');
     }
 }

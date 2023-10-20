@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArtistaController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\DiscoController;
 use App\Http\Controllers\FacturaController;
@@ -25,9 +26,15 @@ Route::get('/users-profile', function ()
     return view('users-profile');
 });
 
-Route::resource('Disco', DiscoController::class);
-Route::resource('Factura', FacturaController::class);
-Route::resource('Cliente', ClienteController::class);
+// Route::get('/vista_artista_index', function ()
+// {
+//     return view('vista_artista_index');
+// });
+
+Route::resource('disco', DiscoController::class);
+Route::resource('artista', ArtistaController::class);
+Route::resource('factura', FacturaController::class);
+Route::resource('cliente', ClienteController::class);
 
 Route::get('/logout', function ()
 {
@@ -42,7 +49,7 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('/users-profile', function () {
-        return view('users-profile');
-    })->name('users-profile');
+    Route::get('/inicio', function () {
+        return view('inicio');
+    })->name('inicio');
 });

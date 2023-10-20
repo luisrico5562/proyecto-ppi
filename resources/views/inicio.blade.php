@@ -10,24 +10,24 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="img/favicon.png" rel="icon">
-  <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="{{asset('assets/img/favicon.png')}}" rel="icon">
+  <link href="{{asset('assets/img/apple-touch-icon.png')}}" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
-  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css?family=https://fonts.googleapis.com/css?family=Inconsolata:400,500,600,700|Raleway:400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="vendor/quill/quill.snow.css" rel="stylesheet">
-  <link href="vendor/quill/quill.bubble.css" rel="stylesheet">
-  <link href="vendor/remixicon/remixicon.css" rel="stylesheet">
-  <link href="vendor/simple-datatables/style.css" rel="stylesheet">
+  <link href="{{asset('assets/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+  <link href="{{asset('assets/vendor/bootstrap-icons/bootstrap-icons.css')}}" rel="stylesheet">
+  <link href="{{asset('assets/vendor/boxicons/css/boxicons.min.css')}}" rel="stylesheet">
+  <link href="{{asset('assets/vendor/quill/quill.snow.css')}}" rel="stylesheet">
+  <link href="{{asset('assets/vendor/quill/quill.bubble.css')}}" rel="stylesheet">
+  <link href="{{asset('assets/vendor/remixicon/remixicon.css')}}" rel="stylesheet">
+  <link href="{{asset('assets/vendor/simple-datatables/style.css')}}" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="css/style.css" rel="stylesheet">
+  <link type="text/css" href="{{asset('assets/css/style.css')}}" rel="stylesheet">
 
   <!-- =======================================================
   * Template Name: NiceAdmin
@@ -45,7 +45,7 @@
 
     <div class="d-flex align-items-center justify-content-between">
       <a href="/" class="logo d-flex align-items-center">
-        <img src="img/logo.png" alt="">
+        <img src="assets/img/logo.png" alt="">
         <span class="d-none d-lg-block">Echoes of Vinyl</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
@@ -87,10 +87,17 @@
             </li>
 
             <li>
+              @auth
                 <a class="dropdown-item d-flex align-items-center" href="users-profile">
                     <i class="bi bi-person"></i>
                     <span>Perfil</span>
                 </a>
+              @else
+              <a class="dropdown-item d-flex align-items-center" href="{{route('login')}}">
+                    <i class="bi bi-person"></i>
+                    <span>Perfil</span>
+              </a>
+              @endauth
             </li>
             <li>
               <hr class="dropdown-divider">
@@ -150,35 +157,56 @@
       </li><!-- End Profile Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="tables-data-discos.html">
-          <i class="bi bi-card-list"></i>
-          <span>Discos</span>
-        </a>
+        @auth
+          <a class="nav-link collapsed" href="{{ route('disco.index') }}">
+            <i class="bi bi-card-list"></i>
+            <span>Discos</span>
+          </a>
+          @else
+          <a class="nav-link collapsed" href="{{ route('login') }}">
+            <i class="bi bi-card-list"></i>
+            <span>Discos</span>
+          </a>
+        @endauth
       </li><!-- End Discos Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="tables-data-artistas.html">
+        @auth
+        <a class="nav-link collapsed" href="{{ route('artista.index') }}">
           <i class="bi bi-card-list"></i>
           <span>Artistas</span>
         </a>
+        @else
+        <a class="nav-link collapsed" href="{{ route('login') }}">
+          <i class="bi bi-card-list"></i>
+          <span>Artistas</span>
+        </a>
+        @endauth
       </li><!-- End Artistas Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="tables-data-clientes.html">
+        <a class="nav-link collapsed" href="#">
           <i class="bi bi-card-list"></i>
           <span>Clientes</span>
         </a>
       </li><!-- End Clientes Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="tables-data-facturas.html">
+        @auth
+        <a class="nav-link collapsed" href="{{route('factura.index')}}">
           <i class="bi bi-card-list"></i>
-          <span>Ventas</span>
+          <span>Facturas</span>
         </a>
+        @else
+        <a class="nav-link collapsed" href="{{route('login')}}">
+          <i class="bi bi-card-list"></i>
+          <span>Facturas</span>
+        </a>
+        @endauth
       </li><!-- End Facturas Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="tables-data-mis-facturas.html">
+        <a class="nav-link collapsed" href="#">
           <i class="bi bi-file-earmark"></i>
           <span>Mis facturas</span>
         </a>
@@ -207,7 +235,7 @@
 
                 @auth
                     <div class="card-body">
-                        <h5 class="card-title">Bienvenido {{Auth::user()->email}}</h5>
+                        <h5 class="card-title">Bienvenido {{Auth::user()->name}}</h5>
                     </div>
                 @else
                     <div class="card-body">
@@ -250,35 +278,35 @@
                     </thead>
                     <tbody>
                       <tr>
-                        <th scope="row"><a href="#"><img src="img/product-1.jpg" alt=""></a></th>
+                        <th scope="row"><a href="#"><img src="{{asset('assets/img/product-1.jpg')}}" alt=""></a></th>
                         <td><a href="#" class="text-primary fw-bold">Ut inventore ipsa voluptas nulla</a></td>
                         <td>$64</td>
                         <td class="fw-bold">124</td>
                         <td>$5,828</td>
                       </tr>
                       <tr>
-                        <th scope="row"><a href="#"><img src="img/product-2.jpg" alt=""></a></th>
+                        <th scope="row"><a href="#"><img src="{{asset('assets/img/product-2.jpg')}}" alt=""></a></th>
                         <td><a href="#" class="text-primary fw-bold">Exercitationem similique doloremque</a></td>
                         <td>$46</td>
                         <td class="fw-bold">98</td>
                         <td>$4,508</td>
                       </tr>
                       <tr>
-                        <th scope="row"><a href="#"><img src="img/product-3.jpg" alt=""></a></th>
+                        <th scope="row"><a href="#"><img src="{{asset('assets/img/product-3.jpg')}}" alt=""></a></th>
                         <td><a href="#" class="text-primary fw-bold">Doloribus nisi exercitationem</a></td>
                         <td>$59</td>
                         <td class="fw-bold">74</td>
                         <td>$4,366</td>
                       </tr>
                       <tr>
-                        <th scope="row"><a href="#"><img src="img/product-4.jpg" alt=""></a></th>
+                        <th scope="row"><a href="#"><img src="{{asset('assets/img/product-4.jpg')}}" alt=""></a></th>
                         <td><a href="#" class="text-primary fw-bold">Officiis quaerat sint rerum error</a></td>
                         <td>$32</td>
                         <td class="fw-bold">63</td>
                         <td>$2,016</td>
                       </tr>
                       <tr>
-                        <th scope="row"><a href="#"><img src="img/product-5.jpg" alt=""></a></th>
+                        <th scope="row"><a href="#"><img src="{{asset('assets/img/product-5.jpg')}}" alt=""></a></th>
                         <td><a href="#" class="text-primary fw-bold">Sit unde debitis delectus repellendus</a></td>
                         <td>$79</td>
                         <td class="fw-bold">41</td>
@@ -312,24 +340,23 @@
       <!-- You can delete the links only if you purchased the pro version. -->
       <!-- Licensing information: https://bootstrapmade.com/license/ -->
       <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-      Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
     </div>
   </footer><!-- End Footer -->
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
-  <script src="vendor/apexcharts/apexcharts.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="vendor/chart.js/chart.umd.js"></script>
-  <script src="vendor/echarts/echarts.min.js"></script>
-  <script src="vendor/quill/quill.min.js"></script>
-  <script src="vendor/simple-datatables/simple-datatables.js"></script>
-  <script src="vendor/tinymce/tinymce.min.js"></script>
-  <script src="vendor/php-email-form/validate.js"></script>
+    <script src="{{asset('assets/vendor/apexcharts/apexcharts.min.js')}}"></script>
+    <script src="{{asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{asset('assets/vendor/chart.js/chart.umd.js')}}"></script>
+    <script src="{{asset('assets/vendor/echarts/echarts.min.js')}}"></script>
+    <script src="{{asset('assets/vendor/quill/quill.min.js')}}"></script>
+    <script src="{{asset('assets/vendor/simple-datatables/simple-datatables.js')}}"></script>
+    <script src="{{asset('assets/vendor/tinymce/tinymce.min.js')}}"></script>
+    <script src="{{asset('assets/vendor/php-email-form/validate.js')}}"></script>
 
-  <!-- Template Main JS File -->
-  <script src="js/main.js"></script>
+    <!-- Template Main JS File -->
+    <script src="{{asset('assets/js/main.js')}}"></script>
 
 </body>
 
