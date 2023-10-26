@@ -33,14 +33,24 @@
                             <x-label for="role" value="{{ __('Role') }}" />
                             <x-input-error for="role" class="mt-2" />
 
+<<<<<<< HEAD
+                            <div class="relative z-0 mt-1 border border-gray-200 rounded-lg cursor-pointer">
+                                @foreach ($this->roles as $index => $role)
+                                    <button type="button" class="relative px-4 py-3 inline-flex w-full rounded-lg focus:z-10 focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500 {{ $index > 0 ? 'border-t border-gray-200 focus:border-none rounded-t-none' : '' }} {{ ! $loop->last ? 'rounded-b-none' : '' }}"
+=======
                             <div class="relative z-0 mt-1 border border-gray-200 dark:border-gray-700 rounded-lg cursor-pointer">
                                 @foreach ($this->roles as $index => $role)
                                     <button type="button" class="relative px-4 py-3 inline-flex w-full rounded-lg focus:z-10 focus:outline-none focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-600 {{ $index > 0 ? 'border-t border-gray-200 dark:border-gray-700 focus:border-none rounded-t-none' : '' }} {{ ! $loop->last ? 'rounded-b-none' : '' }}"
+>>>>>>> main
                                                     wire:click="$set('addTeamMemberForm.role', '{{ $role->key }}')">
                                         <div class="{{ isset($addTeamMemberForm['role']) && $addTeamMemberForm['role'] !== $role->key ? 'opacity-50' : '' }}">
                                             <!-- Role Name -->
                                             <div class="flex items-center">
+<<<<<<< HEAD
+                                                <div class="text-sm text-gray-600 {{ $addTeamMemberForm['role'] == $role->key ? 'font-semibold' : '' }}">
+=======
                                                 <div class="text-sm text-gray-600 dark:text-gray-400 {{ $addTeamMemberForm['role'] == $role->key ? 'font-semibold' : '' }}">
+>>>>>>> main
                                                     {{ $role->name }}
                                                 </div>
 
@@ -52,7 +62,11 @@
                                             </div>
 
                                             <!-- Role Description -->
+<<<<<<< HEAD
+                                            <div class="mt-2 text-xs text-gray-600 text-left">
+=======
                                             <div class="mt-2 text-xs text-gray-600 dark:text-gray-400 text-left">
+>>>>>>> main
                                                 {{ $role->description }}
                                             </div>
                                         </div>
@@ -94,7 +108,11 @@
                     <div class="space-y-6">
                         @foreach ($team->teamInvitations as $invitation)
                             <div class="flex items-center justify-between">
+<<<<<<< HEAD
+                                <div class="text-gray-600">{{ $invitation->email }}</div>
+=======
                                 <div class="text-gray-600 dark:text-gray-400">{{ $invitation->email }}</div>
+>>>>>>> main
 
                                 <div class="flex items-center">
                                     @if (Gate::check('removeTeamMember', $team))
@@ -134,7 +152,11 @@
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center">
                                     <img class="w-8 h-8 rounded-full object-cover" src="{{ $user->profile_photo_url }}" alt="{{ $user->name }}">
+<<<<<<< HEAD
+                                    <div class="ml-4">{{ $user->name }}</div>
+=======
                                     <div class="ml-4 dark:text-white">{{ $user->name }}</div>
+>>>>>>> main
                                 </div>
 
                                 <div class="flex items-center">
@@ -177,14 +199,24 @@
         </x-slot>
 
         <x-slot name="content">
+<<<<<<< HEAD
+            <div class="relative z-0 mt-1 border border-gray-200 rounded-lg cursor-pointer">
+                @foreach ($this->roles as $index => $role)
+                    <button type="button" class="relative px-4 py-3 inline-flex w-full rounded-lg focus:z-10 focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500 {{ $index > 0 ? 'border-t border-gray-200 focus:border-none rounded-t-none' : '' }} {{ ! $loop->last ? 'rounded-b-none' : '' }}"
+=======
             <div class="relative z-0 mt-1 border border-gray-200 dark:border-gray-700 rounded-lg cursor-pointer">
                 @foreach ($this->roles as $index => $role)
                     <button type="button" class="relative px-4 py-3 inline-flex w-full rounded-lg focus:z-10 focus:outline-none focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-600 {{ $index > 0 ? 'border-t border-gray-200 dark:border-gray-700 focus:border-none rounded-t-none' : '' }} {{ ! $loop->last ? 'rounded-b-none' : '' }}"
+>>>>>>> main
                                     wire:click="$set('currentRole', '{{ $role->key }}')">
                         <div class="{{ $currentRole !== $role->key ? 'opacity-50' : '' }}">
                             <!-- Role Name -->
                             <div class="flex items-center">
+<<<<<<< HEAD
+                                <div class="text-sm text-gray-600 {{ $currentRole == $role->key ? 'font-semibold' : '' }}">
+=======
                                 <div class="text-sm text-gray-600 dark:text-gray-400 {{ $currentRole == $role->key ? 'font-semibold' : '' }}">
+>>>>>>> main
                                     {{ $role->name }}
                                 </div>
 
@@ -196,7 +228,11 @@
                             </div>
 
                             <!-- Role Description -->
+<<<<<<< HEAD
+                            <div class="mt-2 text-xs text-gray-600">
+=======
                             <div class="mt-2 text-xs text-gray-600 dark:text-gray-400">
+>>>>>>> main
                                 {{ $role->description }}
                             </div>
                         </div>

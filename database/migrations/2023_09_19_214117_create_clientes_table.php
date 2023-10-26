@@ -18,6 +18,10 @@ return new class extends Migration
             $table->string('correo') -> unique();
             $table->string('password');
             $table->string('direccion');
+<<<<<<< HEAD
+
+=======
+>>>>>>> main
             $table->timestamps();
         });
     }

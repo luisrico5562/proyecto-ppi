@@ -15,8 +15,12 @@ return new class extends Migration
             $table->id();
             $table->integer('user_id');
             $table->integer('disco_id');
+<<<<<<< HEAD
+
+=======
             // $table->foreignId('user_id')->references('id')->on('users');
             // $table->foreignId('disco_id')->references('id')->on('discos');
+>>>>>>> main
             $table->timestamps();
         });
     }

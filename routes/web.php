@@ -6,6 +6,8 @@ use App\Http\Controllers\DiscoController;
 use App\Http\Controllers\FacturaController;
 use Illuminate\Support\Facades\Route;
 
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -52,4 +54,27 @@ Route::middleware([
     Route::get('/inicio', function () {
         return view('inicio');
     })->name('inicio');
+});
+
+
+
+
+
+
+
+
+Route::resource('Cliente', ClienteController::class);
+
+Route::resource('Artista', ArtistaController::class);
+
+Route::resource('Factura', FacturaController::class);
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
 });

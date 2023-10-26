@@ -38,11 +38,11 @@
                         {{ __('Use a recovery code') }}
                     </button>
 
+<<<<<<< HEAD
+                    <button type="button" class="text-sm text-gray-600 hover:text-gray-900 underline cursor-pointer"
+=======
                     <button type="button" class="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 underline cursor-pointer"
-                                    x-cloak
-                                    x-show="recovery"
                                     x-on:click="
-                                        recovery = false;
                                         $nextTick(() => { $refs.code.focus() })
                                     ">
                         {{ __('Use an authentication code') }}
