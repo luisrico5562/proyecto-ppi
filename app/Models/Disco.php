@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Disco extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['artista_id', 'nombre', 'genero', 'year', 'precio'];
+
+    public function artista()
+    {
+        return $this->belongsTo(Artista::class);
+    }
 }

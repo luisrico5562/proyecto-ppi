@@ -197,7 +197,12 @@
                                 <div class="row mb-3">
                                     <label for="artista" class="col-sm-2 col-form-label">Artista</label>
                                     <div class="col-sm-10">
-                                        <input name="artista" type="text" class="form-control">
+                                        <!-- <input name="artista" type="text" class="form-control"> -->
+                                        <select name="artista_id" id="artista_id">
+                                            @foreach($artistas as $artista)
+                                                <option value="{{ $artista->id }}">{{ $artista->nombre }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
 

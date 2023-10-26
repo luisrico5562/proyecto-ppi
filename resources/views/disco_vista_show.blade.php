@@ -193,7 +193,7 @@
 
                                 <div class="row">
                                     <div class="col-lg-2 col-md-4 label">Artista:</div>
-                                    <div class="col-lg-10 col-md-8">{{$disco->artista}}</div>
+                                    <div class="col-lg-10 col-md-8">{{$disco->artista->nombre}}</div>
                                 </div>
                                 
                                 <br>
