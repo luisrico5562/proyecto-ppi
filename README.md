@@ -1,3 +1,12 @@
+# Proyecto Programación Para Internet
+Este es el repositorio para la materia de Programación Para Internet, donde se guarda el proyecto creado a lo largo del semestre. El proyecto está elaborado en equipo por los alumnos [Samuel Jiménez Ábrica](https://github.com/samuj02) y [Luis Iván Rico Amezcua](https://github.com/luisrico5562).
+
+El proyecto está hecho con Laravel y la plantilla del proyecto ([Nice Admin](https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/)) es gratuita y está basada en bootstrap 5.
+
+
+
+
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
