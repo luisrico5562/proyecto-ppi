@@ -41,6 +41,8 @@ class ArtistaController extends Controller
             'nombre' => ['required:artistas,nombre', 'max:50'],
             'pais' => ['min:1', 'max:30'],
             'descripcion' => ['min:0', 'max:300']
+            // LLENARLLENARLLENARLLENARLLENARLLENARLLENAR 
+            // FOTO EN EL TELÉFONO DE SAMU
         ]);
         
         
@@ -57,53 +59,55 @@ class ArtistaController extends Controller
         $artista->save();
         //return redirect()->back();
         //return redirect('/Arista');
-        return redirect()->route('Artista.index');
+        return redirect()->route('artista.index');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Artista $Artistum)
+    public function show(Artista $artistum)
     {
-        $artista = $Artistum;
+        $artista = $artistum;
         return view('vista_artista_show', compact('artista'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Artista $Artistum)
+    public function edit(Artista $artistum)
     {
-        $artista = $Artistum;
+        $artista = $artistum;
         return view('vista_artista_edit', compact('artista'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Artista $Artistum)
+    public function update(Request $request, Artista $artistum)
     {
         $request->validate([
             'nombre' => ['required:artistas,nombre', 'max:50'],
             'pais' => ['min:1', 'max:30'],
             'descripcion' => ['min:0', 'max:300']
+            // LLENARLLENARLLENARLLENARLLENARLLENARLLENAR 
+            // FOTO EN EL TELÉFONO DE SAMU
         ]);
 
-        $artista = $Artistum;
+        $artista = $artistum;
         $artista->nombre = $request->nombre;
         $artista->pais = $request->pais;
         $artista->descripcion = $request->descripcion;
         $artista->save();
-        return redirect()->route('Artista.show', $artista);
+        return redirect()->route('artista.show', $artista);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Artista $Artistum)
+    public function destroy(Artista $artistum)
     {
-        $artista = $Artistum;
+        $artista = $artistum;
         $artista->delete();
-        return redirect()->route('Artista.index');
+        return redirect()->route('artista.index');
     }
 }

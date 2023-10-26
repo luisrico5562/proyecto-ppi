@@ -12,7 +12,7 @@
     <link href="{{asset('assets/img/apple-touch-icon.png')}}" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
-    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css?family=https://fonts.googleapis.com/css?family=Inconsolata:400,500,600,700|Raleway:400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
     <!-- Vendor CSS Files -->
@@ -41,8 +41,8 @@
     <header id="header" class="header fixed-top d-flex align-items-center">
 
         <div class="d-flex align-items-center justify-content-between">
-            <a href="index.html" class="logo d-flex align-items-center">
-                <img src="assets/img/logo.png" alt="">
+            <a href="/" class="logo d-flex align-items-center">
+                <img src="{{asset('assets/img/logo.png')}}" alt="">
                 <span class="d-none d-lg-block">Echoes of Vinyl</span>
             </a>
             <i class="bi bi-list toggle-sidebar-btn"></i>
@@ -66,7 +66,7 @@
                         </li>
 
                         <li>
-                            <a class="dropdown-item d-flex align-items-center" href="pages-login.html">
+                            <a class="dropdown-item d-flex align-items-center" href="#">
                                 <i class="bi bi-person"></i>
                                 <span>Iniciar sesión</span>
                             </a>
@@ -76,7 +76,7 @@
                         </li>
 
                         <li>
-                            <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                            <a class="dropdown-item d-flex align-items-center" href="users-profile">
                                 <i class="bi bi-person"></i>
                                 <span>Perfil</span>
                             </a>
@@ -86,10 +86,13 @@
                         </li>
 
                         <li>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                <i class="bi bi-box-arrow-right"></i>
-                                <span>Salir</span>
-                            </a>
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <a class="dropdown-item d-flex align-items-center" href="{{route('logout')}}">
+                                    <i class="bi bi-box-arrow-right"></i>
+                                    <span>Salir</span>
+                                </a>
+                            </form>
                         </li>
 
                     </ul><!-- End Profile Dropdown Items -->
@@ -106,7 +109,7 @@
         <ul class="sidebar-nav" id="sidebar-nav">
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="index.html">
+                <a class="nav-link collapsed" href="/">
                     <i class="bi bi-grid"></i>
                     <span>Inicio</span>
                 </a>
@@ -115,42 +118,42 @@
             <li class="nav-heading">Pages</li>
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="users-profile.html">
+                <a class="nav-link collapsed" href="users-profile">
                     <i class="bi bi-person"></i>
                     <span>Mi perfil</span>
                 </a>
             </li><!-- End Profile Page Nav -->
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="tables-data-discos.html">
+                <a class="nav-link collapsed" href="{{route('disco.index')}}">
                     <i class="bi bi-card-list"></i>
                     <span>Discos</span>
                 </a>
             </li><!-- End Discos Page Nav -->
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="{{route('Artista.index')}}">
+                <a class="nav-link" href="{{route('artista.index')}}">
                     <i class="bi bi-card-list"></i>
                     <span>Artistas</span>
                 </a>
             </li><!-- End Artistas Page Nav -->
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="tables-data-clientes.html">
+                <a class="nav-link collapsed" href="#">
                     <i class="bi bi-card-list"></i>
                     <span>Clientes</span>
                 </a>
             </li><!-- End Clientes Page Nav -->
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="tables-data-facturas.html">
+                <a class="nav-link collapsed" href="{{route('factura.index')}}">
                     <i class="bi bi-card-list"></i>
                     <span>Facturas</span>
                 </a>
             </li><!-- End Facturas Page Nav -->
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="tables-data-mis-facturas.html">
+                <a class="nav-link collapsed" href="#">
                     <i class="bi bi-file-earmark"></i>
                     <span>Mis facturas</span>
                 </a>
@@ -175,7 +178,7 @@
                             <h5 class="card-title">Datos</h5>
 
                             <!-- General Form Elements -->
-                            <form form action="{{route('Artista.store')}}" method="POST">
+                            <form form action="{{route('artista.store')}}" method="POST">
                                 @csrf
                                 <div class="row mb-3">
                                     <label for="nombre" class="col-sm-2 col-form-label">Nombre</label>
@@ -207,7 +210,7 @@
                             </form><!-- End General Form Elements -->
 
                             <p></p>
-                            <a href="{{route('Artista.index')}}">Cancelar</a>
+                            <a href="{{route('artista.index')}}">Cancelar</a>
 
                         </div>
                     </div>
@@ -221,9 +224,6 @@
     </main><!-- End #main -->
 
     <br>
-    <form action="{{route('Artista.index')}}">
-        <input type="submit" value="Regresar" />
-    </form>
 
     <!-- ======= Footer ======= -->
     <footer id="footer" class="footer">
@@ -235,7 +235,6 @@
             <!-- You can delete the links only if you purchased the pro version. -->
             <!-- Licensing information: https://bootstrapmade.com/license/ -->
             <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
         </div>
     </footer><!-- End Footer -->
 

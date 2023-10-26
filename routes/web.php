@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\ClienteController;
-use App\Http\Controllers\FacturaController;
 use App\Http\Controllers\ArtistaController;
+use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\DiscoController;
+use App\Http\Controllers\FacturaController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -19,7 +20,40 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('inicio');
+});
+
+Route::get('/users-profile', function ()
+{
+    return view('users-profile');
+});
+
+// Route::get('/vista_artista_index', function ()
+// {
+//     return view('vista_artista_index');
+// });
+
+Route::resource('disco', DiscoController::class);
+Route::resource('artista', ArtistaController::class);
+Route::resource('factura', FacturaController::class);
+Route::resource('cliente', ClienteController::class);
+
+Route::get('/logout', function ()
+{
+    auth()->logout();
+    Session()->flush();
+
+    return view('inicio');
+})->name('logout');
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->group(function () {
+    Route::get('/inicio', function () {
+        return view('inicio');
+    })->name('inicio');
 });
 
 

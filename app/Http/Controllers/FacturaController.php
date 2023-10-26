@@ -45,7 +45,7 @@ class FacturaController extends Controller
         
     
         $factura->save();
-        return redirect()->route('Factura.index');
+        return redirect()->route('factura.index');
     }
 
     /**
@@ -80,7 +80,7 @@ class FacturaController extends Controller
         $factura->user_id = $request->user_id;
         $factura->disco_id = $request->disco_id;
         $factura->save();
-        return redirect()->route('Factura.show', $factura);
+        return redirect()->route('factura.show', $factura);
     }
 
     /**
@@ -90,6 +90,6 @@ class FacturaController extends Controller
     {
         $factura = $Factura;
         $factura->delete();
-        return redirect()->route('Factura.index');
+        return redirect()->route('factura.index');
     }
 }

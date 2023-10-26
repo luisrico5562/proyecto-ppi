@@ -14,7 +14,8 @@
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=https://fonts.googleapis.com/css?family=Inconsolata:400,500,600,700|Raleway:400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    
     <!-- Vendor CSS Files -->
     <link href="{{asset('assets/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{asset('assets/vendor/bootstrap-icons/bootstrap-icons.css')}}" rel="stylesheet">
@@ -42,7 +43,7 @@
     <header id="header" class="header fixed-top d-flex align-items-center">
 
         <div class="d-flex align-items-center justify-content-between">
-            <a href="index.html" class="logo d-flex align-items-center">
+            <a href="/" class="logo d-flex align-items-center">
                 <img src="assets/img/logo.png" alt="">
                 <span class="d-none d-lg-block">Echoes of Vinyl</span>
             </a>
@@ -67,7 +68,7 @@
                         </li>
 
                         <li>
-                            <a class="dropdown-item d-flex align-items-center" href="pages-login.html">
+                            <a class="dropdown-item d-flex align-items-center" href="#">
                                 <i class="bi bi-person"></i>
                                 <span>Iniciar sesión</span>
                             </a>
@@ -77,7 +78,7 @@
                         </li>
 
                         <li>
-                            <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                            <a class="dropdown-item d-flex align-items-center" href="users-profile">
                                 <i class="bi bi-person"></i>
                                 <span>Perfil</span>
                             </a>
@@ -87,10 +88,13 @@
                         </li>
 
                         <li>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                <i class="bi bi-box-arrow-right"></i>
-                                <span>Salir</span>
-                            </a>
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <a class="dropdown-item d-flex align-items-center" href="{{route('logout')}}">
+                                    <i class="bi bi-box-arrow-right"></i>
+                                    <span>Salir</span>
+                                </a>
+                            </form>
                         </li>
 
                     </ul><!-- End Profile Dropdown Items -->
@@ -107,7 +111,7 @@
         <ul class="sidebar-nav" id="sidebar-nav">
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="index.html">
+                <a class="nav-link collapsed" href="/">
                     <i class="bi bi-grid"></i>
                     <span>Inicio</span>
                 </a>
@@ -116,42 +120,42 @@
             <li class="nav-heading">Pages</li>
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="users-profile.html">
+                <a class="nav-link collapsed" href="users-profile">
                     <i class="bi bi-person"></i>
                     <span>Mi perfil</span>
                 </a>
             </li><!-- End Profile Page Nav -->
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="tables-data-discos.html">
+                <a class="nav-link collapsed" href="{{route('disco.index')}}">
                     <i class="bi bi-card-list"></i>
                     <span>Discos</span>
                 </a>
             </li><!-- End Discos Page Nav -->
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="{{route('Artista.index')}}">
+                <a class="nav-link collapsed" href="{{route('artista.index')}}">
                     <i class="bi bi-card-list"></i>
                     <span>Artistas</span>
                 </a>
             </li><!-- End Artistas Page Nav -->
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="tables-data-clientes.html">
+                <a class="nav-link collapsed" href="#">
                     <i class="bi bi-card-list"></i>
                     <span>Clientes</span>
                 </a>
             </li><!-- End Clientes Page Nav -->
 
             <li class="nav-item">
-                <a class="nav-link" href="{{route('Factura.index')}}">
+                <a class="nav-link" href="{{route('factura.index')}}">
                     <i class="bi bi-card-list"></i>
                     <span>Facturas</span>
                 </a>
             </li><!-- End Facturas Page Nav -->
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="tables-data-mis-facturas.html">
+                <a class="nav-link collapsed" href="#">
                     <i class="bi bi-file-earmark"></i>
                     <span>Mis facturas</span>
                 </a>
@@ -175,7 +179,7 @@
                         <div class="card-body">
                             <h5 class="card-title">Lista de todas las facturas en la base de datos.</h5>
 
-                            <a href="{{route('Factura.create')}}">Agregar factura</a>
+                            <a href="{{route('factura.create')}}">Agregar factura</a>
                             <p></p>
 
                             <!-- Table with stripped rows -->
@@ -192,7 +196,7 @@
 
                                     @foreach ($facturas as $factura)
                                     <tr>
-                                        <th scope="row"><a href="{{route('Factura.show', $factura)}}">{{$factura->id}}</a></th>
+                                        <th scope="row"><a href="{{route('factura.show', $factura)}}">{{$factura->id}}</a></th>
                                         <td>{{$factura->user_id}}</td>
                                         <td>{{$factura->disco_id}}</td>
 
@@ -222,7 +226,6 @@
             <!-- You can delete the links only if you purchased the pro version. -->
             <!-- Licensing information: https://bootstrapmade.com/license/ -->
             <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
         </div>
     </footer><!-- End Footer -->
 
