@@ -200,7 +200,7 @@
                                         <th scope="row">{{$disco->id}}</th>
                                         <td><a href="{{route('disco.show', $disco)}}">{{$disco->nombre}}</a></td>
                                         <td>{{$disco->genero}}</td>
-                                        <td>{{$disco->artista}}</td>
+                                        <td>{{$disco->artista->nombre}}</td>
                                         <td>{{$disco->year}}</td>
                                         <td>{{$disco->precio}}</td>
                                     </tr>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Artista;
 use App\Models\Disco;
 use Illuminate\Http\Request;
 
@@ -21,7 +22,8 @@ class DiscoController extends Controller
      */
     public function create()
     {
-        return view('disco_vista_create');
+        $artistas = Artista::all();
+        return view('disco_vista_create', compact('artistas'));
     }
 
     /**
@@ -30,9 +32,10 @@ class DiscoController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'artista_id' => 'required', 'exists:artistas, id',
             'nombre' => 'required|max:50',
             'genero' => 'required',
-            'artista' => 'required|max:100',
+            //'artista' => 'required|max:100',
             'year' => 'required',
             'precio' => 'required'
         ]);
@@ -41,7 +44,7 @@ class DiscoController extends Controller
         //Accedemos a los atributos del modelo Disco
         $disco->nombre = $request->nombre;
         $disco->genero = $request->genero;
-        $disco->artista = $request->artista;
+        $disco->artista_id = $request->artista_id;
         $disco->year = $request->year;
         $disco->precio = $request->precio;
 
