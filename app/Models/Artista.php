@@ -9,6 +9,8 @@ class Artista extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['nombre', 'pais', 'descripcion'];
+
     public function discos()
     {
         return $this->hasMany(Disco::class);

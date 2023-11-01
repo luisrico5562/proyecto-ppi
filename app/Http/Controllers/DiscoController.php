@@ -35,7 +35,6 @@ class DiscoController extends Controller
             'artista_id' => 'required', 'exists:artistas, id',
             'nombre' => 'required|max:50',
             'genero' => 'required',
-            //'artista' => 'required|max:100',
             'year' => 'required',
             'precio' => 'required'
         ]);
