@@ -264,27 +264,29 @@
                 </div>
 
                 <div class="card-body pb-0">
-                  <h5 class="card-title">Top Selling <span>| Today</span></h5>
+                  <h5 class="card-title">Discos en venta <span>| Hoy</span></h5>
 
                   <table class="table table-borderless">
                     <thead>
                       <tr>
-                        <th scope="col">Preview</th>
-                        <th scope="col">Product</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Sold</th>
-                        <th scope="col">Revenue</th>
+                        <th scope="col">Carátula</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Precio</th>
+                        <th scope="col">Vendido</th>
+                        <th scope="col">Ganancia</th>
                       </tr>
                     </thead>
                     <tbody>
+                      @foreach($discos as $disco)
                       <tr>
-                        <th scope="row"><a href="#"><img src="{{asset('assets/img/product-1.jpg')}}" alt=""></a></th>
-                        <td><a href="#" class="text-primary fw-bold">Ut inventore ipsa voluptas nulla</a></td>
-                        <td>$64</td>
-                        <td class="fw-bold">124</td>
-                        <td>$5,828</td>
+                        <th scope="row"><a href="{{route('disco.show', $disco)}}"><img src="{{asset('assets/img/product-1.jpg')}}" alt=""></a></th>
+                          <td><a href="{{route('disco.show', $disco)}}" class="text-primary fw-bold">{{$disco->nombre}}</a></td>
+                          <td>{{$disco->precio}}</td>
+                          <td class="fw-bold">124</td>
+                          <td>$5,828</td>
                       </tr>
-                      <tr>
+                      @endforeach
+                      <!-- <tr>
                         <th scope="row"><a href="#"><img src="{{asset('assets/img/product-2.jpg')}}" alt=""></a></th>
                         <td><a href="#" class="text-primary fw-bold">Exercitationem similique doloremque</a></td>
                         <td>$46</td>
@@ -311,7 +313,7 @@
                         <td>$79</td>
                         <td class="fw-bold">41</td>
                         <td>$3,239</td>
-                      </tr>
+                      </tr> -->
                     </tbody>
                   </table>
 

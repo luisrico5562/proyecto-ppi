@@ -4,6 +4,7 @@ use App\Http\Controllers\ArtistaController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\DiscoController;
 use App\Http\Controllers\FacturaController;
+use App\Models\Disco;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,7 +19,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('inicio');
+    $discos = Disco::all();
+    return view('inicio', compact('discos'));
 });
 
 Route::get('/users-profile', function ()
