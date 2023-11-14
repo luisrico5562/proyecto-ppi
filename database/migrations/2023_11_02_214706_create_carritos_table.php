@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('carritos', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('disco_id');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('disco_id')->references('id')->on('discos');
+            $table->integer('cantidad');
             $table->timestamps();
         });
     }

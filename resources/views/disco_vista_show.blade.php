@@ -212,6 +212,8 @@
 
                             </div>
 
+                            
+
                             <form action="{{route('disco.edit', $disco)}}">
                                 <input type="submit" class="btn btn-primary" value="Editar" />
                             </form>

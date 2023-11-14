@@ -49,6 +49,12 @@ class DiscoController extends Controller
 
         //Hacemos la inserción en la base de datos, el INSERT INTO
         $disco->save();
+
+        //archivos
+        if($request->file('archivo')->isValid())
+        {
+            $request->file('archivo')->store('img');
+        }
         
         //Nos regresamos al index = Disco.index
         return redirect()->route('disco.index');

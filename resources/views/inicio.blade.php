@@ -60,9 +60,20 @@
     </div><!-- End Search Bar -->
 
     <nav class="header-nav ms-auto">
-      <ul class="d-flex align-items-center">
 
-        <li class="nav-item dropdown pe-3">
+      <ul class="d-flex align-items-center">
+        <!-- Carrito -->
+        @auth
+        <li class="nav-item dropdown">
+          <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+            <i class="bi bi-cart3">
+              <span>  Mi carrito</span>
+            </i>
+          </a>
+        </li>
+        @endauth
+
+        <li class="nav-item dropdown pe-3">         
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
             <span class="d-none d-md-block dropdown-toggle ps-2">Cuenta</span>
@@ -195,6 +206,7 @@
         @auth
         <a class="nav-link collapsed" href="{{route('factura.index')}}">
           <i class="bi bi-card-list"></i>
+          <!-- <i class="bi bi-cart3"></i> -->
           <span>Facturas</span>
         </a>
         @else

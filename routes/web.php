@@ -40,10 +40,11 @@ Route::resource('cliente', ClienteController::class);
 
 Route::get('/logout', function ()
 {
+    $discos = Disco::all();
     auth()->logout();
     Session()->flush();
 
-    return view('inicio');
+    return view('inicio', compact('discos'));
 })->name('logout');
 
 Route::middleware([
