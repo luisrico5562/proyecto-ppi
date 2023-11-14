@@ -15,4 +15,9 @@ class Disco extends Model
     {
         return $this->belongsTo(Artista::class);
     }
+
+    public function carritos()
+    {
+        return $this->belongsToMany(Carrito::class);
+    }
 }

@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('carrito_disco', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('carrito_id');
+            $table->unsignedBigInteger('disco_id');
+            $table->foreign('carrito_id')->references('id')->on('carritos')->onDelete('cascade');
+            $table->foreign('disco_id')->references('id')->on('discos')->onDelete('cascade');
             $table->timestamps();
         });
     }
