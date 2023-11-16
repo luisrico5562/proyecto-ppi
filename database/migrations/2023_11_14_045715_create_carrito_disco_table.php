@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('carrito_id');
             $table->unsignedBigInteger('disco_id');
+            $table->integer('cantidad');
             $table->foreign('carrito_id')->references('id')->on('carritos')->onDelete('cascade');
             $table->foreign('disco_id')->references('id')->on('discos')->onDelete('cascade');
             $table->timestamps();

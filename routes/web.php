@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\ArtistaController;
-use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\CarritoController;
 use App\Http\Controllers\DiscoController;
 use App\Http\Controllers\FacturaController;
 use App\Models\Disco;
@@ -28,15 +28,12 @@ Route::get('/users-profile', function ()
     return view('users-profile');
 });
 
-// Route::get('/vista_artista_index', function ()
-// {
-//     return view('vista_artista_index');
-// });
+Route::post('/add-cart/{disco}', [CarritoController::class, 'agregarDiscoAlCarrito'])->name('add-cart');
 
 Route::resource('disco', DiscoController::class);
 Route::resource('artista', ArtistaController::class);
 Route::resource('factura', FacturaController::class);
-Route::resource('cliente', ClienteController::class);
+Route::resource('carrito', CarritoController::class);
 
 Route::get('/logout', function ()
 {
