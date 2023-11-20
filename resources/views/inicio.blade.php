@@ -292,18 +292,14 @@
                         <th scope="col">Carátula</th>
                         <th scope="col">Nombre</th>
                         <th scope="col">Precio</th>
-                        <th scope="col">Vendido</th>
-                        <th scope="col">Ganancia</th>
                       </tr>
                     </thead>
                     <tbody>
                       @foreach($discos as $disco)
                       <tr>
-                        <th scope="row"><a href="{{route('disco.show', $disco)}}"><img src="{{asset('assets/img/product-1.jpg')}}" alt=""></a></th>
+                        <th scope="row"><a href="{{route('disco.show', $disco)}}"><img src="{{\Storage::url($disco->archivo_ubicacion)}}" alt=""></a></th>
                           <td><a href="{{route('disco.show', $disco)}}" class="text-primary fw-bold">{{$disco->nombre}}</a></td>
                           <td>{{$disco->precio}}</td>
-                          <td class="fw-bold">124</td>
-                          <td>$5,828</td>
                           @auth
                             <td>
                             <form action="{{ route('add-cart', $disco) }}" method="POST">

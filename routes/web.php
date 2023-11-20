@@ -30,6 +30,8 @@ Route::get('/users-profile', function ()
 
 Route::post('/add-cart/{disco}', [CarritoController::class, 'agregarDiscoAlCarrito'])->name('add-cart');
 
+Route::get('disco-descarga/{disco}', [DiscoController::class, 'descargar'])->name('disco.descarga');
+
 Route::resource('disco', DiscoController::class);
 Route::resource('artista', ArtistaController::class);
 Route::resource('factura', FacturaController::class);

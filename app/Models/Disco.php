@@ -9,7 +9,7 @@ class Disco extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['artista_id', 'nombre', 'genero', 'year', 'precio'];
+    protected $fillable = ['artista_id', 'nombre', 'genero', 'year', 'precio', 'archivo_ubicacion', 'archivo_nombre'];
 
     public function artista()
     {
