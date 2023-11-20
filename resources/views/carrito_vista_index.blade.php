@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Echoes of Vinyl - Inicio</title>
+  <title>Mi carrito</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -65,9 +65,9 @@
         <!-- Carrito -->
         @auth
         <li class="nav-item dropdown">
-          <a class="nav-link nav-icon" href="{{ route('carrito.index') }}">
+          <a class="nav-link nav-icon" href="{{route('carrito.index')}}">
             <i class="bi bi-cart3">
-              <span>  Mi carrito</span>
+              <span> Mi carrito</span>
             </i>
           </a>
         </li>
@@ -153,7 +153,7 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link " href="/">
+        <a class="nav-link collapsed" href="/">
           <i class="bi bi-grid"></i>
           <span>Inicio</span>
         </a>
@@ -239,7 +239,7 @@
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Bienvenido a Echoes of Vinyl</h1>
+      <h1>Mi carrito</h1>
     </div><!-- End Page Title -->
 
     <section class="section dashboard">
@@ -284,7 +284,7 @@
                 </div>
 
                 <div class="card-body pb-0">
-                  <h5 class="card-title">Discos en venta <span>| Hoy</span></h5>
+                  <h5 class="card-title">Productos en carrito <span>| Hoy</span></h5>
 
                   <table class="table table-borderless">
                     <thead>
@@ -292,55 +292,22 @@
                         <th scope="col">Carátula</th>
                         <th scope="col">Nombre</th>
                         <th scope="col">Precio</th>
+                        <th scope="col">Cantidad</th>
                       </tr>
                     </thead>
                     <tbody>
-                      @foreach($discos as $disco)
-                      <tr>
-                        <th scope="row"><a href="{{route('disco.show', $disco)}}"><img src="{{\Storage::url($disco->archivo_ubicacion)}}" alt=""></a></th>
-                          <td><a href="{{route('disco.show', $disco)}}" class="text-primary fw-bold">{{$disco->nombre}}</a></td>
-                          <td>{{$disco->precio}}</td>
-                          @auth
-                            <td>
-                            <form action="{{ route('add-cart', $disco) }}" method="POST">
-                                @csrf
-                                <label for="cantidad">Cantidad:</label>
-                                <input type="number" id="cantidad" name="cantidad" value="1" min="1">
-                                <button type="submit">Agregar al carrito</button>
-                            </form>
-                          </td>
-                          @endauth
-                          
-                      </tr>
-                      @endforeach
-                      <!-- <tr>
-                        <th scope="row"><a href="#"><img src="{{asset('assets/img/product-2.jpg')}}" alt=""></a></th>
-                        <td><a href="#" class="text-primary fw-bold">Exercitationem similique doloremque</a></td>
-                        <td>$46</td>
-                        <td class="fw-bold">98</td>
-                        <td>$4,508</td>
-                      </tr>
-                      <tr>
-                        <th scope="row"><a href="#"><img src="{{asset('assets/img/product-3.jpg')}}" alt=""></a></th>
-                        <td><a href="#" class="text-primary fw-bold">Doloribus nisi exercitationem</a></td>
-                        <td>$59</td>
-                        <td class="fw-bold">74</td>
-                        <td>$4,366</td>
-                      </tr>
-                      <tr>
-                        <th scope="row"><a href="#"><img src="{{asset('assets/img/product-4.jpg')}}" alt=""></a></th>
-                        <td><a href="#" class="text-primary fw-bold">Officiis quaerat sint rerum error</a></td>
-                        <td>$32</td>
-                        <td class="fw-bold">63</td>
-                        <td>$2,016</td>
-                      </tr>
-                      <tr>
-                        <th scope="row"><a href="#"><img src="{{asset('assets/img/product-5.jpg')}}" alt=""></a></th>
-                        <td><a href="#" class="text-primary fw-bold">Sit unde debitis delectus repellendus</a></td>
-                        <td>$79</td>
-                        <td class="fw-bold">41</td>
-                        <td>$3,239</td>
-                      </tr> -->
+                      @if($cantDiscos > 0)
+                          @foreach($discosCarrito as $disco)
+                          <tr>
+                            <th scope="row"><a href="#"><img src="{{asset('assets/img/product-3.jpg')}}" alt=""></a></th>
+                            <td><a class="text-primary fw-bold">{{ $disco->nombre }}</a></td>
+                            <td><a class="fw-bold">{{ $disco->precio }}</a></td>
+                            <td><a class="fw-bold">{{ $disco->pivot->cantidad }}</a></td>
+                          </tr>
+                          @endforeach
+                      @else
+                          <p><h5>El carrito está vacío, aún no añades productos.</h5></p>
+                      @endif
                     </tbody>
                   </table>
 

@@ -11,11 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('artistas', function (Blueprint $table) {
+        Schema::create('carritos', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre', 255);
-            $table->string('pais', 255);
-            $table->string('descripcion', 255);
+            $table->unsignedBigInteger('user_id');
+            //$table->unsignedBigInteger('disco_id');
+            $table->foreign('user_id')->references('id')->on('users');
+            //$table->foreign('disco_id')->references('id')->on('discos');
+            //$table->integer('cantidad');
             $table->timestamps();
         });
     }
@@ -25,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('artistas');
+        Schema::dropIfExists('carritos');
     }
 };

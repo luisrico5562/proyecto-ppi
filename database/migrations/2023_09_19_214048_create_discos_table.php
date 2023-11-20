@@ -20,6 +20,8 @@ return new class extends Migration
             //$table->string('artista');
             $table->integer('year');
             $table->decimal('precio');
+            $table->string('archivo_ubicacion');
+            $table->string('archivo_nombre');
             $table->timestamps();
         });
     }

@@ -5,14 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Artista extends Model
+class Carrito extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nombre', 'pais', 'descripcion'];
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
     public function discos()
     {
-        return $this->hasMany(Disco::class);
+        return $this->belongsToMany(Disco::class);
     }
 }

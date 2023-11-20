@@ -178,7 +178,7 @@
                             <h5 class="card-title">Datos</h5>
 
                             <!-- General Form Elements -->
-                            <form form action="{{route('disco.store')}}" method="POST">
+                            <form action="{{route('disco.store')}}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row mb-3">
                                     <label for="nombre" class="col-sm-2 col-form-label">Nombre</label>
@@ -217,6 +217,13 @@
                                     <label for="precio" class="col-sm-2 col-form-label">Precio</label>
                                     <div class="col-sm-10">
                                         <input name="precio" type="number" class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label for="archivo" class="col-sm-2 col-form-label">Archivo</label>
+                                    <div class="col-sm-10">
+                                        <input name="archivo" type="file" class="form-control">
                                     </div>
                                 </div>
 

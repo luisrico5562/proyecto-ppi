@@ -13,6 +13,11 @@
   scroll-behavior: smooth;
 }
 
+.foto-disco {
+  border-radius: 15%;
+  max-width: 400px;
+}
+
 body {
   font-family: "Open Sans", sans-serif;
   background: #f6f9ff;

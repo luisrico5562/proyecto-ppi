@@ -11,12 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('artistas', function (Blueprint $table) {
-            $table->id();
-            $table->string('nombre', 255);
-            $table->string('pais', 255);
-            $table->string('descripcion', 255);
-            $table->timestamps();
+        Schema::table('discos', function (Blueprint $table) {
+            $table->foreign('artista_id')->references('id')->on('artistas');
         });
     }
 
@@ -25,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('artistas');
+        Schema::table('discos', function (Blueprint $table) {
+            $table->dropForeign(['artista_id']);
+        });
     }
 };
