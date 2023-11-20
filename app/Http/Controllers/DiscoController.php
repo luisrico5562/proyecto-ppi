@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Artista;
 use App\Models\Disco;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class DiscoController extends Controller
 {
@@ -36,7 +37,8 @@ class DiscoController extends Controller
             'nombre' => 'required|max:50',
             'genero' => 'required',
             'year' => 'required',
-            'precio' => 'required'
+            'precio' => 'required',
+            'archivo' => 'max:10000'
         ]);
 
         $disco = new Disco();
@@ -46,15 +48,11 @@ class DiscoController extends Controller
         $disco->artista_id = $request->artista_id;
         $disco->year = $request->year;
         $disco->precio = $request->precio;
+        $disco->archivo_ubicacion = $request->file('archivo')->store('public/img');
+        $disco->archivo_nombre = $request->file('archivo')->getClientOriginalName();
 
         //Hacemos la inserción en la base de datos, el INSERT INTO
         $disco->save();
-
-        //archivos
-        if($request->file('archivo')->isValid())
-        {
-            $request->file('archivo')->store('img');
-        }
         
         //Nos regresamos al index = Disco.index
         return redirect()->route('disco.index');
@@ -112,5 +110,10 @@ class DiscoController extends Controller
         $disco = $disco;
         $disco->delete();
         return redirect()->route('disco.index');
+    }
+
+    public function descargar(Disco $disco)
+    {
+        return Storage::download($disco->archivo_ubicacion, $disco->archivo_nombre);
     }
 }

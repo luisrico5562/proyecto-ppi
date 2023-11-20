@@ -221,9 +221,9 @@
                                 </div>
 
                                 <div class="row mb-3">
-                                    <label for="precio" class="col-sm-2 col-form-label">Archivo</label>
+                                    <label for="archivo" class="col-sm-2 col-form-label">Archivo</label>
                                     <div class="col-sm-10">
-                                        <input name="file" type="file" class="form-control">
+                                        <input name="archivo" type="file" class="form-control">
                                     </div>
                                 </div>
 

@@ -178,6 +178,12 @@
                             <div class="tab-pane fade show active profile-overview" id="profile-overview">
 
                                 <div class="row">
+                                    <img src="{{\Storage::url($disco->archivo_ubicacion)}}" class="foto-disco"alt="">
+                                </div>
+
+                                <br>
+
+                                <div class="row">
                                     <div class="col-lg-2 col-md-4 label ">ID</div>
                                     <div class="col-lg-10 col-md-8">{{$disco->id}}</div>
                                 </div>
