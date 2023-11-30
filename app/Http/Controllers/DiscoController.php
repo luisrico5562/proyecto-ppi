@@ -70,9 +70,13 @@ class DiscoController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Disco $disco)
+    public function edit(Disco $disco, Request $request)
     {
         $disco = $disco;
+        if($request->user()->cannot('delete', $disco))
+        {
+            abort(403);
+        }
         return  view('disco_vista_edit', compact('disco'));
     }
 
@@ -105,9 +109,16 @@ class DiscoController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Disco $disco)
+    public function destroy(Disco $disco, Request $request)
     {
+        #$idUser = $request->user->id;
         $disco = $disco;
+
+        if($request->user()->cannot('delete', $disco))
+        {
+            abort(403);
+        }
+
         $disco->delete();
         return redirect()->route('disco.index');
     }

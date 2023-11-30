@@ -306,7 +306,7 @@
                                 @csrf
                                 <label for="cantidad">Cantidad:</label>
                                 <input type="number" id="cantidad" name="cantidad" value="1" min="1">
-                                <button type="submit">Agregar al carrito</button>
+                                <button type="submit" class="btn btn-primary rounded-pill">Agregar al carrito</button>
                             </form>
                           </td>
                           @endauth
