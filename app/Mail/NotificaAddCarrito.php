@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Models\Disco;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -16,7 +17,7 @@ class NotificaAddCarrito extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct(Public Disco $disco)
     {
         //
     }
@@ -27,7 +28,7 @@ class NotificaAddCarrito extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Notifica Add Carrito',
+            subject: 'Se agregó un disco a tu carrito de compras',
         );
     }
 
@@ -37,7 +38,7 @@ class NotificaAddCarrito extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'view.name',
+            markdown: 'emails.notificaAddCarrito',
         );
     }
 

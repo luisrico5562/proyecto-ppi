@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\NotificaAddCarrito;
 use App\Models\Carrito;
 use App\Models\Disco;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class CarritoController extends Controller
 {
@@ -24,10 +26,11 @@ class CarritoController extends Controller
         }
         $carrito = $usuario->carrito;
 
-        if($carrito && $carrito->discos && !$carrito->discos->contains($disco->id))
+        if($carrito && !$carrito->discos->contains($disco->id))
         {
             $cantidad = $request->cantidad;
             $carrito->discos()->attach($disco, ['cantidad' => $cantidad]);
+            Mail::to($request->user())->send(new NotificaAddCarrito($disco));
         }
         return redirect()->route('carrito.index');
     }
