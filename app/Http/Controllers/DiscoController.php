@@ -120,7 +120,7 @@ class DiscoController extends Controller
         }
 
         $disco->delete();
-        return redirect()->route('disco.index');
+        return redirect()->route('disco.index')->with('success', 'El disco ha sido eliminado exitosamente.');
     }
 
     public function descargar(Disco $disco)

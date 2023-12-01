@@ -236,6 +236,7 @@
 
   </aside><!-- End Sidebar-->
 
+
   <main id="main" class="main">
 
     <div class="pagetitle">
@@ -266,23 +267,22 @@
               </div>
             </div><!-- End Recent Sales -->
 
+            @if(session('success'))
+              <div class="alert alert-success">
+                  {{ session('success') }}
+              </div>
+            @endif
+
+            @if(session('info'))
+                <div class="alert alert-info">
+                    {{ session('info') }}
+                </div>
+            @endif
+
             <!-- Top Selling -->
             <div class="col-12">
               <div class="card top-selling overflow-auto">
-
-                <div class="filter">
-                  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                    <li class="dropdown-header text-start">
-                      <h6>Filter</h6>
-                    </li>
-
-                    <li><a class="dropdown-item" href="#">Today</a></li>
-                    <li><a class="dropdown-item" href="#">This Month</a></li>
-                    <li><a class="dropdown-item" href="#">This Year</a></li>
-                  </ul>
-                </div>
-
+                
                 <div class="card-body pb-0">
                   <h5 class="card-title">Productos en carrito <span>| Hoy</span></h5>
 
@@ -299,10 +299,20 @@
                       @if($cantDiscos > 0)
                           @foreach($discosCarrito as $disco)
                           <tr>
-                            <th scope="row"><a href="#"><img src="{{asset('assets/img/product-3.jpg')}}" alt=""></a></th>
+                            <th scope="row"><a href="#"><img src="{{\Storage::url($disco->archivo_ubicacion)}}" class="foto-disco"alt=""></a></th>
                             <td><a class="text-primary fw-bold">{{ $disco->nombre }}</a></td>
                             <td><a class="fw-bold">{{ $disco->precio }}</a></td>
                             <td><a class="fw-bold">{{ $disco->pivot->cantidad }}</a></td>
+                            <td>
+                              <form action="{{ route('carrito.eliminar', ['disco' => $disco->id]) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger rounded-pill">
+                                  <i class="bi bi-trash"></i> Eliminar
+                                </button>
+                              </form>
+                              
+                            </td>
                           </tr>
                           @endforeach
                       @else

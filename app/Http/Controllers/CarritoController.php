@@ -10,29 +10,48 @@ use Illuminate\Support\Facades\Mail;
 
 class CarritoController extends Controller
 {
-    public function agregarDiscoAlCarrito(Request $request, Disco $disco)
+
+    public function createCarrito()
     {
-        //Obtenemos el usuario logueado
         $usuario = auth()->user();
 
-        //Verificamos si no tiene un carrito
         if(!$usuario->carrito)
         {
             $carrito = new Carrito();
             $carrito->user_id = $usuario->id;
-            // $carrito->disco_id = $disco->id;
-            // $carrito->cantidad = $request->cantidad;
             $carrito->save();
+            return $carrito;
         }
-        $carrito = $usuario->carrito;
+        return $usuario->carrito;
+    }
 
-        if($carrito && !$carrito->discos->contains($disco->id))
+    public function agregarDiscoAlCarrito(Request $request, Disco $disco)
+    {
+        //Obtenemos el usuario logueado
+        $usuario = auth()->user();
+        $carrito = $this->createCarrito();
+
+        $usuario->carrito = $carrito;
+
+        if($carrito->discos() == null)
         {
             $cantidad = $request->cantidad;
             $carrito->discos()->attach($disco, ['cantidad' => $cantidad]);
             Mail::to($request->user())->send(new NotificaAddCarrito($disco));
+            return redirect()->route('carrito.index')->with('success', 'El disco ha sido agregado al carrito.');
         }
-        return redirect()->route('carrito.index');
+        if($usuario->carrito && ($carrito->discos() != null) && !$usuario->carrito->discos->contains($disco->id))
+        {
+            $cantidad = $request->cantidad;
+            $carrito->discos()->attach($disco, ['cantidad' => $cantidad]);
+            Mail::to($request->user())->send(new NotificaAddCarrito($disco));
+            return redirect()->route('carrito.index')->with('success', 'El disco ha sido agregado al carrito.');
+        }
+        else
+        {
+            return redirect()->route('carrito.index')->with('info', 'El disco ya está en el carrito.');
+        }
+        #return redirect()->route('carrito.index');
     }
     /**
      * Display a listing of the resource.
@@ -60,7 +79,16 @@ class CarritoController extends Controller
      */
     public function create()
     {
-        //
+        $usuario = auth()->user();
+
+        if(!$usuario->carrito)
+        {
+            $carrito = new Carrito();
+            $carrito->user_id = $usuario->id;
+            $carrito->save();
+            return redirect()->route('carrito.index');
+        }
+        return redirect()->route('carrito.index');
     }
 
     /**
@@ -101,5 +129,21 @@ class CarritoController extends Controller
     public function destroy(Carrito $carrito)
     {
         //
+    }
+
+    public function eliminar(Disco $disco)
+    {
+        $usuario = auth()->user();
+
+        if ($usuario->carrito)
+        {
+            $carrito = $usuario->carrito;
+
+            // Utiliza detach para eliminar el disco de la tabla pivote
+            $carrito->discos()->detach($disco);
+
+            return redirect()->route('carrito.index')->with('success', 'El disco ha sido eliminado del carrito.');
+        }
+        return redirect()->route('carrito.index')->with('info', 'El carrito no existe.');
     }
 }

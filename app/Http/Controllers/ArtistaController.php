@@ -107,6 +107,9 @@ class ArtistaController extends Controller
     public function destroy(Artista $artistum)
     {
         $artista = $artistum;
+        //Eliminar primero los discos
+        $artista->discos()->delete();
+        //Eliminar al artista después
         $artista->delete();
         return redirect()->route('artista.index');
     }
