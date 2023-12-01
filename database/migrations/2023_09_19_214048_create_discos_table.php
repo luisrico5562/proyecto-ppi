@@ -14,7 +14,8 @@ return new class extends Migration
     {
         Schema::create('discos', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('artista_id');
+            $table->unsignedBigInteger('artista_id');
+            #$table->foreign('artista_id')->references('id')->on('artistas')->onDelete('cascade');
             $table->string('nombre');
             $table->string('genero');
             //$table->string('artista');

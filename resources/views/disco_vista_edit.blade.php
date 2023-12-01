@@ -200,7 +200,7 @@
                                 <div class="row mb-3">
                                     <label for="artista" class="col-sm-2 col-form-label">Artista</label>
                                     <div class="col-sm-10">
-                                        <input name="artista" class="form-control" value="{{$disco->artista}}">
+                                        <input name="artista" class="form-control" value="{{$disco->artista->nombre}}">
                                     </div>
                                 </div>
 
